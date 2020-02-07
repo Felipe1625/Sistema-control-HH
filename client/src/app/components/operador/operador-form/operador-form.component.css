@@ -8,3 +8,13 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+
+  .centrado{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+ 

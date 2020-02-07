@@ -5,7 +5,7 @@
                <h5 class="card-header text-center">Actualizar operador</h5>
           </ng-template>
           <div class="card body ">
-               <form class="p-5 ">
+               <!-- <form class="p-5 ">
                     <div class="row">
                          <div class="form-group col-6">
                               <input type="text" name="Rut" placeholder="Rut" class="form-control" autofocus
@@ -103,7 +103,22 @@
                          <button [disabled]="!button" class="btn btn-success mt-1"
                               (click)="updateOperador()">Actualizar</button>
                     </ng-template>
-               </form>
+               </form> -->
+               <div class="row h-100 w-100">
+                    <div class="col-6">
+                         <img class="centrado" src="https://icon-icons.com/icons2/1860/PNG/256/roadworker1_118000.png">
+                    </div>
+                    <div class="col-6">
+                         <form>
+                              <h5 class="mt-4 text-center">Ingrese los datos solicitados</h5>
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control mt-4 mb-4">
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control mb-4">
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control mb-4">
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control mb-4">
+                              <button class="btn btn-success mb-4">Agregar</button>
+                         </form>
+                    </div>
+               </div>
           </div>
      </div>
 </div>
