@@ -37,14 +37,14 @@
           <th mat-header-cell *matHeaderCellDef>Area </th>
           <td mat-cell *matCellDef="let operador"> {{operador.Descripcion}} </td>
      </ng-container>
-     
+      
      <ng-container matColumnDef="Acciones">
           <th mat-header-cell *matHeaderCellDef> Acciones </th>
           <td mat-cell *matCellDef="let operador">
                <button type="button" class="btn btn-info m-2"
                     [routerLink]="['/operador/update/',operador.IdOperador]" routerLinkActive="router-link-active"><i class="fas fa-pencil-alt"></i></button>
                <button type="button" class="btn btn-danger" data-toggle="modal"
-                    data-target="#modalEliminar" (click)="getid(operador.IdOperador)"><i class="fas fa-trash"></i></button>
+                    data-target="#modalEliminar" (click)="getOperador(operador)"><i class="fas fa-trash"></i></button>
           </td>
      </ng-container>
 
@@ -69,7 +69,7 @@
                     </button>
                </div>
                <div class="modal-body">
-                    Se eliminara el siguiente operador: Victor Campos
+                    Se eliminara el siguiente operador: {{operador_modal.Nombre}}
                </div>
                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

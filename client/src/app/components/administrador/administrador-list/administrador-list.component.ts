@@ -3,6 +3,7 @@ import {AdministradorService} from '../../../services/administrador/administrado
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';//
+import {Administrador} from '../../../models/Administrador'
 
 @Component({  
   selector: 'app-administrador-list',
@@ -22,7 +23,9 @@ export class AdministradorListComponent implements OnInit {
     Rut: '', Nombre: ''
   };
   constructor(private administradorService:AdministradorService) { }
-  id:any;
+  administrador_modal:Administrador={
+    Nombre:""
+  };
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
@@ -89,7 +92,7 @@ export class AdministradorListComponent implements OnInit {
   }
 
   deleteAdministrador(){
-    this.administradorService.deleteAdministrador(this.id).subscribe(
+    this.administradorService.deleteAdministrador(this.administrador_modal.IdAdmin).subscribe(
       res=>{
         console.log(res)
         this.getAdministradores()
@@ -98,9 +101,9 @@ export class AdministradorListComponent implements OnInit {
     ) 
   }
   //para obtener el id y usarlo en el modal de eliminar
- getid(idm){
-   this.id=idm
-   console.log('el id es: '+this.id);
+ getAdministrador(administrador){
+   this.administrador_modal=administrador
+   console.log(this.administrador_modal);
  }
 
 

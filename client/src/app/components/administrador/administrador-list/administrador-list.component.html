@@ -38,7 +38,7 @@
         <button  type="button" class="btn btn-info m-2"
           [routerLink]="['/administrador/update/',administrador.IdAdmin]" routerLinkActive="router-link-active"><i class="fas fa-pencil-alt"></i></button>
         <button  type="button" class="btn btn-danger" data-toggle="modal"
-          data-target="#modalEliminar" (click)="getid(administrador.IdAdmin)"><i class="fas fa-trash "></i></button>
+          data-target="#modalEliminar" (click)="getAdministrador(administrador)"><i class="fas fa-trash "></i></button> 
       </td>
     </ng-container>
 
@@ -64,7 +64,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Se eliminara el siguiente administrador: Pablo Ascencio
+        Se eliminara el siguiente administrador: {{administrador_modal.Nombre}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

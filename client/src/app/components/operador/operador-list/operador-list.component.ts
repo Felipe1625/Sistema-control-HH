@@ -3,6 +3,7 @@ import {OperadorService} from '../../../services/operador/operador.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';//
+import {Operador} from '../../../models/Operador'
  
 @Component({ 
   selector: 'app-operador-list',
@@ -21,7 +22,9 @@ export class OperadorListComponent implements OnInit {
     Rut: '', Nombre: ''
   };
   constructor(private operadorService:OperadorService) { }
-  id:any;
+  operador_modal:Operador={
+    Nombre:"",
+  };
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
@@ -76,12 +79,13 @@ export class OperadorListComponent implements OnInit {
     )
   }
 
-  getid(idm){
-    this.id=idm; 
+  getOperador(operador){
+    this.operador_modal=operador; 
+    console.log(this.operador_modal)
   }
 
   deleteOperador(){
-    this.operadorService.deleteOperador(this.id).subscribe(
+    this.operadorService.deleteOperador(this.operador_modal.IdOperador).subscribe(
       res=>{
         console.log(res)
         this.getOperadores()

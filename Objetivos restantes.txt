@@ -3,27 +3,18 @@ Login
 Agregar footer con logos 
 
 
-lista de trabajo
-traer fecha fin de db
-
-
-lista de pausas
-Terminado
-
-
 Codigos
 Modificar aspecto
 
 
 Operador
-Mensaje al eliminar operador tenga su nombre
 Modificar agregar/editar diseño
 
 
 Administrador
-Mensaje al eliminar administrador tenga su nombre
 Modificar agregar/editar diseño
 
 
 Panel de control de operadores
 Modificar diseño de botones
+Guardar fecha fin, ya que agregamos la col fechafin en la db

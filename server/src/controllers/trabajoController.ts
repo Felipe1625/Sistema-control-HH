@@ -7,7 +7,7 @@ class TrabajoController{
      //list -> list all trabajos
 
      public async list(req:Request,res:Response){
-          const trabajos=await pool.query('SELECT IdTrabajo,o.IdOt as IdOt,o.Codigo as Codigo,CONCAT(op.Nombre,\' \',op.Apellido) as Nombre,Fecha,HoraInicio,HoraFin,TotalTiempo FROM trabajo t inner join ot o on o.IdOt=t.IdOt inner join operador op on op.IdOperador=t.IdOperador WHERE o.ACTIVA=1');
+          const trabajos=await pool.query('SELECT IdTrabajo,o.IdOt as IdOt,o.Codigo as Codigo,CONCAT(op.Nombre,\' \',op.Apellido) as Nombre,Fecha,FechaFin,HoraInicio,HoraFin,TotalTiempo FROM trabajo t inner join ot o on o.IdOt=t.IdOt inner join operador op on op.IdOperador=t.IdOperador WHERE o.ACTIVA=1');
           res.json(trabajos);
           console.log(trabajos);
      }

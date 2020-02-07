@@ -83,7 +83,7 @@ export class OperadorPantallaComponent implements OnInit {
   btndetallemodalcerrarjornada = false
   titulomodalcerrarjornadadescripcion: any = 'Importante';
 
-  descripcionmodalcerrarjornadadescripcion: any = 'Puede cerrar jornada, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'//descripcion de la accion a realizar en modal cerrar jornada
+  descripcionmodalcerrarjornadadescripcion: any = 'Puede cerrar la jornada laboral actual, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'//descripcion de la accion a realizar en modal cerrar jornada
   variableidoperadorencerrarjornadamodal: any;//el id operador, pero seleccionado en el modal jornada, asi en caso que un operador este logueado, no crea que ese es el id a cerrar, se tenian que separar y guardar en variables distintas, una, la oficial, es la que verifica si es que el que esta loguado, esta verifica quien quiere cerrar ot o jornada, pero dentro del modal cerrar jornada
   ocultarbotonpantallacerrarjornada: any = true; //oculta el boton en modal cerrra jornada, si es false, se mostrara el button para cerrar ot o cerrr jornada
   buttoncerrarotenmodalcerrarjornada: any = false; //indica si el button anteriormente descrito tiene el metodo para cerrar ot o cerrar jornada, si es true, el metodo es cerrar ot en modal, si es false, em metodo es cerrra jornada ot en modal cerrar jornada
@@ -679,12 +679,12 @@ export class OperadorPantallaComponent implements OnInit {
       }
       console.log('todas las ots estan cerradas, asi que se puede cerrar')
       this.cerrarjornada = true
-      this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar jornada, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
+      this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar la jornada laboral actual, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
       return
     } else {
       console.log('la lista esta vacia por lo que se puede cerrar, asi que true')
       this.cerrarjornada = true
-      this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar jornada, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
+      this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar la jornada laboral actual, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
     }
   }
 
@@ -1374,7 +1374,7 @@ console.warn('entre en mostrarmensajecerrarjornadaoreiniciardatosmodalcerrarjorn
   if (mostrarmensajecerrarjornada == true) {
     this.cerrarjornada = true
     console.log('se puede cerrar')
-    this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar jornada, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
+    this.descripcionmodalcerrarjornadadescripcion = 'Puede cerrar la jornada laboral actual, recuerde que al hacerlo, no podra continuar con su trabajo hasta la siguiente jornada laboral'
     this.ocultarbotonpantallacerrarjornada = false
   } else {
     this.reiniciarmodalcerrarjornada()
