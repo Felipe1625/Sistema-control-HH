@@ -1,0 +1,52 @@
+<div>
+     <div class="card">
+          <h5 *ngIf="!update;else tituloUpdate" class="card-header text-center"><i class="fas fa-long-arrow-alt-left float-left"></i>Crear Ot</h5>
+          <ng-template #tituloUpdate>
+               <h5 class="card-header text-center">Actualizar Ot</h5>
+          </ng-template>
+          <div class="card body ">
+               <form class="p-5 ">
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Codigo" placeholder="Codigo" class="form-control"
+                                   [(ngModel)]="ot.Codigo" (input)="CodigoChange($event)">
+                         </div>
+                         <div *ngIf="!codigo;else codigoCorrecto" [hidden]="codigo" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeCodigo}}
+                         </div>
+                         <ng-template #codigoCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+ 
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Descripcion" placeholder="Descripcion" class="form-control"
+                                   [(ngModel)]="ot.Descripcion" (input)="DescripcionChange($event)">
+                         </div>
+                         <div *ngIf="!descripcion;else descripcionCorrecto" [hidden]="descripcion" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeDescripcion}}
+                         </div>
+                         <ng-template #descripcionCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                              </ng-template>
+                    </div>
+                   
+
+                    <button [disabled]="!button" class="btn btn-success" *ngIf="!update;else guardar"
+                         (click)="saveNewOt()">Crear</button>
+                    <ng-template #guardar>
+                         <button [disabled]="!button" class="btn btn-success"
+                              (click)="updateOt()">Actualizar</button>
+                    </ng-template>
+                    
+               </form>
+          </div>
+     </div>
+</div>

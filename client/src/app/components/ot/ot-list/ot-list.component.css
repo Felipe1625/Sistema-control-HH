@@ -1,0 +1,18 @@
+table {
+     width: 100%;
+}
+
+#btn-acciones {
+    border-radius: 25px;
+}
+
+#input{
+    border-radius:25px;
+}
+
+#btn-filter{
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+    }

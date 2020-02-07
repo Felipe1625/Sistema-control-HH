@@ -1,0 +1,16 @@
+.tab{ 
+     border-bottom: 3px solid #1DA4B7;
+     color: #1DA4B7 !important;
+ } 
+
+ a{
+    transition: color 0.3s ease;
+ }
+ 
+ a:hover{
+    color: #1DA4B7 !important;
+ }
+
+.color-pestana{
+    color:#616161 !important;
+}

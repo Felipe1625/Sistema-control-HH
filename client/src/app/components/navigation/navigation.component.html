@@ -1,0 +1,83 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+  <div class="mat-elevation-z3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3" style="background-color: #F4F4F4 !important;padding:15px !important;">
+  <ng-container *ngIf="authServiceLogin.loggedIn() ; else LoggedOut">
+    <div class="container">
+      <li class="navbar-brand">Administrador</li>
+      <!-- <a class="navbar-brand">Administrador</a> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link tab" routerLink="/trabajo" onclick="pintarBordeNav(this)"><i class="fas fa-clipboard"></i>
+              Trabajo</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/pausa" onclick="pintarBordeNav(this)"><i class="fas fa-business-time"></i>
+              Pausas</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/ot" onclick="pintarBordeNav(this)"><i class="fas fa-book-open"></i>
+              Codigos</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link " routerLink="/operador" onclick="pintarBordeNav(this)"><i
+                class="fas fa-hard-hat"></i>Opeardor</a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link " routerLink="/administrador" onclick="pintarBordeNav(this)"><i
+                class="fas fa-user-tie"></i> Administrador</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link " style="cursor: pointer;" data-toggle="modal" data-target="#modalCerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar
+              sesión</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #LoggedOut>
+    <div class="container">
+      <li class="navbar-brand">Sistema control HH</li>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto ">
+          <li class="nav-item active">
+            <a class="nav-link tab" routerLink="/" onclick="pintarBordeNav(this)"><i class="fas fa-user"></i> Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</nav>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCerrarSesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cerrar sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Recuerde finalizar todo su trabajo antes de cerrar sesión
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="loggOut()">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>

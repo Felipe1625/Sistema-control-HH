@@ -1,0 +1,70 @@
+.scroller{ 
+     overflow-x: scroll;
+     overflow-y: hidden;
+     height: 80px;
+     white-space:nowrap;
+     position:absolute;                  
+     bottom:0;                          
+     right:0; 
+     left: 0;
+ } 
+
+
+ .scrollerVertical{ 
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 80% !important;
+    right:0; 
+    left: 0;
+    border: 1px solid rgb(219, 216, 216);
+    
+     /* border: 2px solid yellow; */
+} 
+
+
+.buttonsss{
+    left: 10%;
+    width: 39%;
+    height: 54%;
+    position: absolute;
+}
+.boton{
+    right: 10%;
+    width: 39%;
+    height: 25%;
+    position: absolute; 
+}
+
+.botonx{
+    top: 44%;
+    right: 10%;
+    width: 39%;
+    height: 25%;
+    position: absolute; 
+}
+
+.buttonc{
+    display: block ;
+    height: 23% !important;
+}
+
+.buttonCerrarJornada{
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    
+    
+}
+
+
+#btn-cerrar-en-modal{
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+    }
+
+    #btn-acciones {
+        border-radius: 25px;
+    }
+

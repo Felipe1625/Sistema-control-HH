@@ -1,0 +1,109 @@
+<div>
+     <div class="card">
+          <h5 *ngIf="!update;else tituloUpdate" class="card-header text-center">Ingresar operador</h5>
+          <ng-template #tituloUpdate>
+               <h5 class="card-header text-center">Actualizar operador</h5>
+          </ng-template>
+          <div class="card body ">
+               <form class="p-5 ">
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control" autofocus
+                                   [(ngModel)]="operador.Rut" (input)="RutChange($event)">
+                         </div>
+                         <div *ngIf="!rut;else rutCorrecto" [hidden]="rut" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeRut}}
+                         </div>
+                         <ng-template #rutCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Nombre" placeholder="Nombre" class="form-control"
+                                   [(ngModel)]="operador.Nombre" (input)="NombreChange($event)">
+                         </div>
+                         <div *ngIf="!nombre;else nombreCorrecto" [hidden]="nombre" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeNombre}}
+                         </div>
+                         <ng-template #nombreCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Apellido" placeholder="Apellido" class="form-control"
+                                   [(ngModel)]="operador.Apellido" (input)="ApellidoChange($event)">
+                         </div>
+                         <div *ngIf="!apellido;else apellidoCorrecto" [hidden]="apellido" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeApellido}}
+                         </div>
+                         <ng-template #apellidoCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="password" name="Contraseña" placeholder="Contraseña" class="form-control"
+                                   [(ngModel)]="operador.Password" (input)="PasswordChange($event)">
+                         </div>
+                         <div *ngIf="!password;else passwordCorrecto" [hidden]="password" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajePassword}}
+                         </div>
+                         <ng-template #passwordCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+
+               
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <mat-form-field>
+                                   <mat-select placeholder="Seleccione cargo" [formControl]="operadorForm"
+                                        (selectionChange)="selectChange($event.value)" [(value)]="puestoSeleccionado">
+
+                                        <mat-option *ngFor="let puesto of puestos" [value]="puesto.IdPuestoTrabajador">
+                                             {{puesto.Descripcion}}
+                                        </mat-option>
+                                   </mat-select>
+                                   <mat-error *ngIf="operadorForm.hasError('required')">Debe seleccionar un puesto de
+                                        trabajo
+                                   </mat-error>
+                              </mat-form-field>
+                         </div>
+                         <div *ngIf="!cargo;else CargoSeleccionado" [hidden]="cargo" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeCargo}}
+                         </div>
+                         <ng-template #CargoSeleccionado>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+
+
+                    <button [disabled]="!button" class="btn btn-success mt-1" *ngIf="!update;else guardar"
+                         (click)="saveNewOperador()">Guardar</button>
+                         <button routerLink="/operador" class="btn btn-success ml-2 mt-1">Volver</button> 
+                    <ng-template #guardar>
+                         <button [disabled]="!button" class="btn btn-success mt-1"
+                              (click)="updateOperador()">Actualizar</button>
+                    </ng-template>
+               </form>
+          </div>
+     </div>
+</div>

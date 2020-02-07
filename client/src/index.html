@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Client</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--css bootstrap 4 lux-->
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <!--css bootstrap 4 lux-->
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/3be4d496f1.js" crossorigin="anonymous"></script>
+  <!--font awesome-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body style="background-color: #F8F9F9;">
+  <app-root></app-root>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var ruta;
+    function cerrarModalPassword() {
+      var valorinput = document.getElementById("inputPassword").value;
+      var password = document.getElementById('divcerrar').textContent;
+      if (valorinput == password) {
+        $('#modalPassword').modal('hide');
+        var b = document.querySelector("#btnIniciarOt");
+        console.log('valor de b: ' + b)
+        b.setAttribute("data-toggle", "modal");
+        cambiarColorbuttonOperadorActual()
+      }
+    };
+
+    function cerrarModalCodigo() {
+      if ($('#inputCodigo').val().length != 0) {
+        var valorinput = document.getElementById("inputCodigo").value;
+        console.log(valorinput)
+        $('#modalCodigo').modal('hide');
+      }
+    };
+
+    function pintarBordeMotivos(obj) {
+      $("li").removeAttr("style");
+      console.log('lo que viene es: ' + obj.textContent)
+      $('li:contains("' + obj.textContent + '")').css({ "border": "1px solid orange" });
+    }
+
+    function limpiarBordeMotivos() {
+      $("div ul li").removeAttr("style");
+    }
+
+    function cerrarModalPausa() {
+      $('#modalPausa').modal('hide');
+      $("li").removeAttr("style");
+      //$("#btnIniciarOt").removeAttr('data-toggle')
+
+    }
+    function cerrarModalTerminarPausa() {
+      $('#modalTerminarPausa').modal('hide');
+    }
+
+    function cerrarModalCerrarOt() {
+      $('#modalCerrarOt').modal('hide');
+    }
+    function cambiarColorbuttonOperadorActual() {
+      //cambia el color del operador seleccionado y si esta seleccionado no puede abrir su pantalla de password
+      // $("div button").removeAttr("style");
+      // $("div button").attr('data-toggle','modal')
+      // var nombre = document.getElementById('divNombreOperador').textContent;
+      // $('button:contains("' + nombre + '")').css({ "background-color": "#f44336" });
+      // $('button:contains("' + nombre + '")').removeAttr('data-toggle')
+      //hasta aqui volver 
+      $("div div li").removeClass("active");
+      $("div div li").attr('data-toggle', 'modal')
+      var nombre = document.getElementById('divNombreOperador').textContent;
+      $('li:contains("' + nombre + '")').addClass('active')
+    }
+
+    function pintarBordeNav(obj) {
+
+      $("li").removeAttr("style");
+      $("a").removeClass("tab")
+      $('li a:contains("' + obj.textContent + '")').addClass("tab");
+    
+    }
+
+    function deshabilitarbutton(){
+      console.log('desabilitar button')
+      $("li").removeClass("tab");
+      $("li").removeAttr("style");
+      
+    }
+
+    function cerrarJornadaLaboralPorElDiaJs(){
+      console.log('retirar styles al cerrar jornada');
+      $("li").removeClass("active");
+      //$("li").removeAttr("style");
+      
+    }
+
+    function moverBotonLogin(){
+      
+    }
+
+    window.onbeforeunload = function preguntarAntesDeSalir() {
+      if (document.getElementById("divRuta") !== null) {
+        ruta = document.getElementById('divRuta').textContent;
+        console.log('ruta en js:' + ruta)
+      } else {
+        ruta = 'no es /operadores'
+      }
+      var rutabla = '/operadores'
+      console.log('ruta=' + rutabla)
+      if (ruta == rutabla) {
+        console.log('ruta es /operadores')
+        return "¿Seguro que quieres salir?";
+      }
+      else {
+
+      }
+    }
+
+  </script>
+</body>
+
+<!-- <footer>
+  
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-4">
+      <img width="200px" src="http://www.udec.cl/normasgraficas/sites/default/files/marcacentral.png">
+    </div>
+    <div class="col-4">
+      
+    </div>
+    <div class="col-4">
+      
+    </div>
+  </div>
+</div>
+
+</footer> -->
+</html>

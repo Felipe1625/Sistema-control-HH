@@ -1,0 +1,181 @@
+<!-- <div class="container"> -->
+<div class="row mb-3">
+     <div class="col">
+          <h4 class="float-left">Lista de Trabajo</h4>
+     </div>
+     <div class="col">
+          <button id="btn-add" class="btn btn-success float-right"
+               (click)="exporter.exportTable('xlsx', {sheet: 'Listado', Props: {Author: 'Talha'},fileName:'titulo'})"><i
+                    class="far fa-file-excel"></i> Exportar a excel</button>
+     </div>
+</div>
+<div class="row">
+
+     <mat-form-field class="pr-3 col-3">
+          <input id="inputCodigo" matInput class="form-field col-1" [formControl]="filtroCodigo"
+               placeholder="Filtro Codigo">
+     </mat-form-field>
+     <mat-form-field class="pr-3 col-3">
+          <input id="inputOperador" matInput class="form-field col-1" [formControl]="filtroOperador"
+               placeholder="Filtro Operador">
+     </mat-form-field>
+     <mat-form-field class="col-3">
+          <input id="inputFecha" matInput [matDatepicker]="picker" placeholder="Fecha" [formControl]="filtroFecha"
+               readonly>
+
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+     </mat-form-field>
+
+     <button type="button" id="btn-filter"><i class=" ml-3 far fa-times-circle fa-2x"
+               (click)="LimpiarFiltros()"></i></button>
+
+</div>
+<div>
+     <div class="mat-elevation-z3">
+     <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z0 table-striped" #exporter="matTableExporter"
+          hiddenColumns="[0]" style=" text-align: center;">
+          <!--este hiddenColumns representa la columna que no sera exportada en el excel-->
+
+          <!-- <ng-container matColumnDef="Accion">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Accion</th>
+               <td mat-cell *matCellDef="let trabajo"><button id="btn-acciones" type="button"
+                         class="btn btn-info m-2" data-toggle="modal" data-target="#modalActualizar"
+                         (click)="getData(trabajo)"><i class="fas fa-pencil-alt"></i> Editar</button></td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="CodigoOt">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Codigo Ot </th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.Codigo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Operador">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Operador </th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.Nombre}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="Fecha">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Fecha inicio </th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.Fecha}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="FechaFin">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Fecha fin</th>
+               <td mat-cell *matCellDef="let trabajo">19/01/2020</td>
+          </ng-container>
+
+          <ng-container matColumnDef="HoraInicio">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Hora Inicio </th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.HoraInicio}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="HoraFin">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Hora Fin </th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.HoraFin}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="Jornadas">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Jornadas</th>
+               <td mat-cell *matCellDef="let trabajo"><button id="btn-acciones" type="button"
+                         class="btn btn-info m-2" data-toggle="modal" data-target="#modalDetalle"
+                         (click)="detalleSegunTrabajo(trabajo)"><i class="fas fa-search"></i> Detalle</button></td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="Tiempo">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Tiempo</th>
+               <td mat-cell *matCellDef="let trabajo">{{trabajo.TotalTiempo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Accion">
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Acciones</th>
+               <td mat-cell *matCellDef="let trabajo"><button type="button"
+                         class="btn btn-info m-2" data-toggle="modal" data-target="#modalActualizar"
+                         (click)="getData(trabajo)"><i class="fas fa-pencil-alt"></i></button>
+                         <button type="button"
+                         class="btn btn-success m-2" data-toggle="modal" data-target="#modalDetalle"
+                         (click)="detalleSegunTrabajo(trabajo)"><i class="fas fa-search"></i></button>
+                    </td>
+                         
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="Columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: Columnas;"></tr>
+     </table>
+     <mat-paginator [pageSizeOptions]="[4, 10, 20]" showFirstLastButtons></mat-paginator>
+     </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalActualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar codigo de trabajo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body">
+
+                    <div class="form-group">
+                         <label for="recipient-name" class="col-form-label">Modificar codigo actual: </label>
+                         <input type="text" class="form-control" id="recipient-name" autofocus [(ngModel)]="codigo">
+                    </div>
+
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-info" (click)="updateTrabajo()"
+                         data-dismiss="modal">Modificar</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+
+
+<div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Detalle de trabajo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body">
+
+                    <table border="1" style=" text-align: center;">
+                         <tr>
+                              <th>Fecha</th>
+                              <th>Hora inicio</th>
+                              <th>Hora fin</th>
+                              <th>Total tiempo</th>
+                         </tr>
+
+                         <tr *ngFor="let tiempo of listTiempo">
+                              <td>{{tiempo.Fecha}}</td>
+                              <td>{{tiempo.HoraInicio}}</td>
+                              <td>{{tiempo.HoraFin}}</td>
+                              <td>{{tiempo.TotalTiempo}}</td>
+                         </tr>
+
+                    </table>
+
+
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+
+<!-- </div> -->

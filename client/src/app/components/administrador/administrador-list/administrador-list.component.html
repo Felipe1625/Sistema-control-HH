@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col">
+    <h4 class="float-left">Lista de administradores</h4>
+  </div>
+  <div class="col">
+    <button id="btn-add" class="btn btn-success float-right" routerLink="/administrador/add"><i class="fas fa-user-plus"></i> Agregar Administrador</button>
+  </div>
+</div>
+<div class="row">
+  <mat-form-field class="pr-3 col-3">
+    <input matInput class="form-field col-1" [formControl]="filtroRut" placeholder="Filtro Rut">
+  </mat-form-field>
+   <mat-form-field class="pr-3 col-3">
+    <input matInput class="form-field col-1" [formControl]="filtroNombre" placeholder="Filtro Nombre">
+  </mat-form-field>
+  <button type="button" id="btn-filter"><i class=" ml-3 far fa-times-circle fa-2x" (click)="LimpiarFiltros()"></i></button>
+</div>
+
+
+<div class="mat-elevation-z3">
+  <table mat-table [dataSource]="dataSource"  class="mat-elevation-z0 table-striped">
+  
+    <ng-container matColumnDef="Rut">
+      <th mat-header-cell *matHeaderCellDef> Rut </th>
+      <td mat-cell *matCellDef="let administrador"> {{administrador.Rut}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let administrador"> {{administrador.Nombre}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let administrador">
+        <button  type="button" class="btn btn-info m-2"
+          [routerLink]="['/administrador/update/',administrador.IdAdmin]" routerLinkActive="router-link-active"><i class="fas fa-pencil-alt"></i></button>
+        <button  type="button" class="btn btn-danger" data-toggle="modal"
+          data-target="#modalEliminar" (click)="getid(administrador.IdAdmin)"><i class="fas fa-trash "></i></button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="Columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: Columnas;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[4, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
+</div> 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar administrador</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se eliminara el siguiente administrador: Pablo Ascencio
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteAdministrador()"
+          data-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

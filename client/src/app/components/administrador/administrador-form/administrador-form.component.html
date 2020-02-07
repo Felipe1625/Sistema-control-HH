@@ -1,0 +1,98 @@
+<div>
+     <div class="card">
+          <h5 *ngIf="!update;else tituloUpdate" class="card-header text-center">Ingresar administrador</h5>
+          <!-- <i class="fas fa-long-arrow-alt-left float-left"></i> -->
+          <ng-template #tituloUpdate>
+               <h5 class="card-header text-center">Actualizar administrador</h5>
+          </ng-template>
+          <div class="card body ">
+               <form class="p-5 ">
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Rut" placeholder="Rut" class="form-control" autofocus
+                                   [(ngModel)]="administrador.Rut" (input)="RutChange($event)">
+                         </div>
+                         <div *ngIf="!rut;else rutCorrecto" [hidden]="rut" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeRut}}
+                         </div>
+                         <ng-template #rutCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+ 
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Nombre" placeholder="Nombre" class="form-control"
+                                    (input)="NombreChange($event)" [(ngModel)]="administrador.Nombre" >
+                         </div>
+                         <div *ngIf="!nombre;else nombreCorrecto" [hidden]="nombre" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeNombre}}
+                         </div>
+                         <ng-template #nombreCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                              </ng-template>
+                    </div>
+                   
+
+
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="text" name="Apellido" placeholder="Apellido" class="form-control"
+                                   [(ngModel)]="administrador.Apellido" (input)="ApellidoChange($event)">
+                         </div>
+                         <div *ngIf="!apellido;else apellidoCorrecto" [hidden]="apellido" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajeApellido}}
+                         </div>
+                         <ng-template #apellidoCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="password" name="Contraseña" placeholder="Contraseña" class="form-control"
+                                   [(ngModel)]="administrador.Password" (input)="PasswordChange($event)">
+                         </div>
+                         <div *ngIf="!password;else passwordCorrecto" [hidden]="password" id="alerta-mensaje"
+                              class="alert alert-danger col-4 text-center" role="alert">
+                              {{mensajePassword}}
+                         </div>
+                         <ng-template #passwordCorrecto>
+                              <div id="alerta-mensaje" class="alert alert-success d-flex justify-content-center rounded" role="alert">
+                                   <i id="icono-centrado" class="fas fa-check"></i>
+                              </div>
+                         </ng-template>
+                    </div>
+
+                    <div class="row">
+                         <div class="form-group col-6">
+                              <input type="password" name="RepetirContraseña" placeholder="Repetir Contraseña"
+                                   class="form-control" (input)="RepetirPasswordChange($event)" [(ngModel)]="RepetirPassword">
+                         </div>
+                         <div [hidden]="repetirpassword" id="alerta-mensaje" class="alert alert-danger col-4 text-center"
+                              role="alert">
+                              {{mensajeRepetirerror}}
+                         </div>
+                    </div>
+
+                    <button [disabled]="!button" class="btn btn-success" *ngIf="!update;else guardar"
+                         (click)="saveNewAdministrador()">Guardar</button>
+                         <button routerLink="/administrador" class="btn btn-success ml-2">Volver</button> 
+                    <ng-template #guardar>
+                         <button [disabled]="!button" class="btn btn-success"
+                              (click)="updateAdministrador()">Actualizar</button>
+                               
+                    </ng-template>
+                    
+               </form>
+          </div>
+     </div>
+</div>

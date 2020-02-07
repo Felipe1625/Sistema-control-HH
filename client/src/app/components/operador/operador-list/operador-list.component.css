@@ -1,0 +1,42 @@
+table {
+     width: 100%;
+}
+
+#btn-acciones {
+    border-radius: 25px;
+    font-weight:500;
+}
+
+#btn-add{
+    border-radius: 25px;
+    font-weight:900;
+    
+}
+
+#input{
+    border-radius:25px;
+}
+
+#btn-filter{
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+    color: #616161;
+    }
+
+    th{
+        background-color: #1DA4B7;
+        color: white;
+        text-align: center !important;
+    }
+
+      td{
+        text-align: center;
+      }
+
+     
+
+
+
+  

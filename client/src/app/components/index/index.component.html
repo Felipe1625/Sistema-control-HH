@@ -1,0 +1,103 @@
+<div class=" row justify-content-md-center">
+ 
+     <div class="col-5 shadow mb-5 bg-white">
+          <div>
+               <div class="row justify-content-md-center text-center">
+                    <div>
+                         <!-- <i class="fas fa-user-tie fa-10x"></i> -->
+                         <div style="position: relative;
+                         display: inline-block;
+                         text-align: center;"><img class="w-100"
+                                   src="https://cdn.pixabay.com/photo/2015/02/02/11/08/office-620817_960_720.jpg">
+                              <div style="position: absolute;
+                         top: 50%;
+                         left: 50%;
+                         transform: translate(-50%, -50%);color: white;font-size: 25px;font-weight:900;">Administrador
+                              </div>
+                         </div>
+                         <form class="p-4 ">
+                              <div class="input-group mb-3">
+                                   <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                  class="fas fa-user-circle"></i></span>
+                                   </div>
+                                   <input type="text" class="form-control" placeholder="Ingrese su rut" name="rut"
+                                        aria-label="Username" aria-describedby="basic-addon1" autofocus
+                                        [(ngModel)]="user.rut" (input)="datosChange($event)">
+                              </div>
+                              <div class="input-group mb-3">
+                                   <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                   </div>
+                                   <input type="password" class="form-control" placeholder="Ingrese su contraseña"
+                                        name="password" aria-label="Username" aria-describedby="basic-addon1"
+                                        [(ngModel)]="user.password" (input)="datosChange($event)">
+                              </div>                                                
+                              
+                              <button class="btn btn-success btn-ingresar" (click)="signin()">Ingresar</button>
+                         </form>
+
+                    </div>
+
+               </div>
+          </div>
+     </div>
+     <div style="margin: 10px;"></div>
+     <div class="col-5 shadow mb-5 bg-white text-center">
+          <div>
+               <div class="row justify-content-md-center text-center">
+                    <div>
+                         <div style="position: relative;
+                         display: inline-block;
+                         text-align: center;"><img class="w-100"
+                                   src=" https://cdn.pixabay.com/photo/2018/05/08/20/31/work-3383831_960_720.jpg">
+                              <div style="position: absolute;
+                         top: 50%;
+                         left: 50%;
+                         transform: translate(-50%, -50%);color: white;font-size: 25px;font-weight:900;">Operadores
+                              </div>
+                         </div>
+                         <div class="mt-2 pt-2">
+                              <p>Ingresar al panel de control</p>
+                         </div>
+                         <div class="mt-2 pt-2">
+                              <button class="btn btn-success w-50 btn-ingresar" onclick="deshabilitarbutton()"
+                                   routerLink="/operadores">Panel de control</button>
+                         </div>
+                         <!-- <span class="mensaje-error"> <i class="fas fa-times margin"></i>Usuario o contraseña incorrectas</span> -->
+                         <div class="alert alert-danger m-4" role="alert" [hidden]="mensajeErrorLogin">
+                              Usuario o contraseña incorrectos!
+                            </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+</div>
+
+
+
+
+
+
+
+<!--
+<div>
+     <div class="card">
+               <h5 class="card-header text-center">Ingresar como administrador</h5>
+          <div class="card body ">
+               <form class="p-5 ">
+                    <div class="form-group">
+                         <input type="text" name="rut" placeholder="Rut" class="form-control" autofocus [(ngModel)]="user.rut">
+                    </div>
+                    <div class="form-group">
+                         <input type="password" name="password" placeholder="Contraseña" class="form-control" [(ngModel)]="user.password">
+                    </div>                   
+                    <button class="btn btn-success" (click)="signin()">Ingresar</button>
+               </form>
+          </div>
+     </div>
+     
+</div>
+
+<button class="btn btn-success w-100" onclick="deshabilitarbutton()" routerLink="/operadores">Operadores</button>-->

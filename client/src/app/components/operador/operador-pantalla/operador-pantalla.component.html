@@ -1,0 +1,377 @@
+<div class="h-75">
+     <div class="row">
+          <div class="col-6">
+
+               <div class="list-group scrollerVertical">
+                    <li *ngFor="let operador of operadores" class="list-group-item btn" data-toggle="modal"
+                         data-target="#modalPassword" (click)="getPassword(operador)">
+                         {{operador.Nombre}}</li>
+               </div>
+
+               <div id="divNombreOperador" hidden>{{nombreOperador}}</div>
+               <div id="divRuta" hidden>{{rutaPagina}}</div>
+
+
+          </div>
+          <div class="col-6">
+
+               <h4 class="text-center">{{Titulo}}</h4>
+
+               <button id="btnIniciarOt" class="btn btn-success  w-100 buttonc mb-2" data-toggle=""
+                    data-target="#modalCodigo" [disabled]="btnIniciar">
+                    <div class="row h-100" style="align-items: center">
+                         <div class="col-4">
+                              <i class="far fa-play-circle fa-7x float-left mt-1"></i>
+                         </div>
+                         <div class="col-8">
+                              <p class="text-left mt-3">{{mensajeButtonIniciarOt}}</p>
+                         </div>
+                    </div>
+
+               </button>
+
+               <button class="btn btn-warning  w-100 buttonc mb-2" [disabled]="btnPausa" data-toggle="modal"
+                    data-target="#modalPausa">
+                    <div class="row h-100" style="align-items: center">
+                         <div class="col-4">
+                              <i class="far fa-pause-circle fa-7x float-left mt-1"></i>
+                         </div>
+                         <div class="col-8">
+                              <p class="text-left mt-3"> {{mensajeButtonPausa}}</p>
+                         </div>
+                    </div>
+               </button>
+
+               <button class="btn btn-info  w-100 buttonc mb-2" [disabled]="btnCerrar" data-toggle="modal"
+                    data-target="#modalCerrarOt">
+                    <div class="row h-100" style="align-items: center">
+                         <div class="col-4">
+                              <i class="far fa-times-circle fa-7x float-left mt-1"></i>
+                         </div>
+                         <div class="col-8">
+                              <p class="text-left mt-3">Cerrar Ot</p>
+                         </div>
+                    </div>
+
+               </button>
+
+               <button class="btn btn-danger  w-100 mt-3 buttonCerrarJornada" data-toggle="modal" [disabled]="btnCerrarJornadaLaboral"
+                    data-target="#modalCerrarJornada" (click)="CerrarJornada()">
+                    <div class="row h-100" style="align-items: center">
+                         <div class="col-4">
+
+                              <i class="fas fa-running fa-4x float-left mt-1"></i>
+                              <i class="fas fa-door-closed fa-4x float-left mt-1"></i>
+                         </div>
+                         <div class="col-8">
+                              <p class="text-left mt-3">Cerrar jornada laboral</p>
+                         </div>
+                    </div>
+
+               </button>
+          </div>
+
+     </div>
+</div>
+
+<!--Buttons para iniciar,pausar y cerrar ot-->
+<!-- <button id="btnIniciarOt" class="btn btn-success buttonsss" data-toggle="" data-target="#modalCodigo"
+     [disabled]="btnIniciar">{{mensajeButtonIniciarOt}}</button>
+<button class="btn btn-warning  boton" [disabled]="btnPausa" data-toggle="modal"
+     data-target="#modalPausa">{{mensajeButtonPausa}}</button>
+<button class="btn btn-info  botonx" [disabled]="btnCerrar" data-toggle="modal"
+data-target="#modalCerrarOt">Cerrar Ot</button> -->
+<!--Buttons para iniciar,pausar y cerrar ot-->
+
+
+<!-- Scroll de operadores-->
+<!-- <div>
+     <div class="scroller">
+          <button id="{{operador.Nombre}}" *ngFor="let operador of operadores" class="btn btn-success col-2" data-toggle="modal"
+               data-target="#modalPassword" (click)="getPassword(operador)">{{operador.Nombre}}</button>
+     </div>
+</div>
+<div id="divNombreOperador" hidden>{{nombreOperador}}</div> -->
+<!-- Scroll de operadores-->
+
+<!-- Modal Contraseña-->
+<div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true" data-backdrop="static">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" *ngIf="!mostrarmodaljornadacerradaalingresarpassword; else modalmensajejornadacerrada">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                         (click)="limpiarPassword()">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body">
+                    <div class="form-group">
+                         <label for="message-text" class="col-form-label">{{nombreOperadorModal}} ingrese su
+                              contraseña</label>
+                         <input type="password" class="form-control" id="inputPassword" autofocus
+                              [(ngModel)]="passwordIngresada" (input)="cerrarAlertaPassword()">
+                    </div>
+                    <div class="alert alert-danger" role="alert" [hidden]="alertaPassword">
+                         {{mensajAlertPassword}}
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                         (click)="limpiarPassword()">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="verificarPassword()"
+                         onclick="cerrarModalPassword()">Verificar</button>
+                    <div id="divcerrar" hidden>{{password}}</div>
+               </div>
+          </div>
+
+     </div>
+
+<ng-template #modalmensajejornadacerrada>
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Jornada laboral cerrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                         (click)="limpiarPassword()">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body">
+                    La jornada laboral fue cerrada, puede continuar su trabajo el siguiente dia laboral
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                         (click)="limpiarPassword()">Cerrar</button>
+           
+                    <div id="divcerrar" hidden>{{password}}</div>
+               </div>
+          </div>
+
+     </div>
+</ng-template>
+
+</div>
+<!-- Modal Contraseña-->
+
+
+<!-- Modal Codigo-->
+<div class="modal fade" id="modalCodigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true" data-backdrop="static">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Codigo Ot</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                         (click)="limpiarCodigo()">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body">
+                    <div class="form-group">
+                         <label for="message-text" class="col-form-label">Ingrese el codigo de la ot</label>
+                         <input class="form-control" id="inputCodigo" [(ngModel)]="codigoIngresado"
+                              (input)="cerrarAlertaCodigo()" />
+                    </div>
+                    <div class="alert alert-danger" role="alert" [hidden]="alertaCodigo">
+                         {{mensajAlertCodigo}}
+                    </div>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                         (click)="limpiarCodigo()">Volver</button>
+                    <button type="button" class="btn btn-success" (click)="IniciarOt()"
+                         onclick="cerrarModalCodigo()">Iniciar Ot</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- Modal Codigo-->
+
+
+
+<!-- Modal Pausa-->
+<div class="modal fade" id="modalPausa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true" data-backdrop="static">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Iniciar Pausa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                         onclick="limpiarBordeMotivos()" (click)="limpiarMotivoSeleccionado()">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <div class="modal-body mt-1 mb-1">
+
+                    <label for="message-text" class="col-form-label">Seleccione motivo de su pausa</label>
+
+
+                    <ul class="list-group">
+                         <li *ngFor="let motivo of motivosPausas" class="list-group-item btn"
+                              (click)="getMotivoSeleccionado(motivo)" onclick="pintarBordeMotivos(this)">
+                              {{motivo.Descripcion}}</li>
+
+                    </ul>
+
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarBordeMotivos()"
+                         (click)="limpiarMotivoSeleccionado()">Volver</button>
+                    <button type="button" class="btn btn-warning" (click)="iniciarPausa()" onclick="cerrarModalPausa()"
+                         [disabled]="btnIniciarPausa">Iniciar Pausa</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- Modal Pausa-->
+
+
+<!-- Modal Reanudar Ot -->
+<div class="modal fade" id="modalTerminarPausa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Terminar Pausa</h5>
+
+               </div>
+               <div class="modal-body">
+                    <label for="message-text" class="col-form-label">La pausa terminara y la ot proseguira.</label>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar pausa</button>
+                    <button type="button" class="btn btn-primary" (click)="terminarPausa()"
+                         onclick="cerrarModalTerminarPausa()">Terminar pausa</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- Modal Reanudar Ot -->
+
+
+
+<!-- Modal Cerrar Ot -->
+<div class="modal fade" id="modalCerrarOt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Cerrar Ot</h5>
+
+               </div>
+               <div class="modal-body">
+                    <label for="message-text" class="col-form-label">Terminar orden de trabajo actual</label>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Ot</button>
+                    <button type="button" class="btn btn-primary" (click)="cerrarOtDesdeBotonCerrar()"
+                         onclick="cerrarModalCerrarOt()">Cerrar Ot</button>
+               </div>
+          </div>
+     </div>
+</div>
+<!-- Modal Cerrar Ot -->
+
+
+
+<!-- Modal Cerrar Jornada -->
+<div class="modal fade" id="modalCerrarJornada" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+     <div class="modal-dialog modal-lg modal-dialog-centered" role="document" *ngIf="!cerrarjornada; else modalcerrarjornada">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <div class="col-6">
+                         <h5 class="modal-title" id="exampleModalLongTitle">Pendientes de cierre</h5>
+                    </div>
+
+                    <div class="col-6">
+                         <h5 class="modal-title" id="exampleModalLongTitle">{{titulomodalcerrarjornadadescripcion}}</h5>
+                    </div>
+
+               </div>
+               <div class="modal-body mt-1 mb-1">
+                    <div class="row">
+                         <div class="col-6">
+                              <ul class="list-group" *ngFor="let ot of listOtIngresadas">
+                                   <li  class="list-group-item" *ngIf="(ot.Activa!=false)">
+                                        <div class="row h-100" style="align-items: center" >
+                                             <div class="col-8" >
+                                                  {{ot.Nombre}}
+                                             </div>
+                                             <div class="col-1 mr-3">
+                                                  <button id="btn-cerrar-en-modal" (click)="cerrarotmodaljornadaicono(ot)">
+                                                       <i class="far fa-times-circle fa-3x"></i>
+                                                  </button>
+
+
+                                             </div>
+                                             <div class="col-1">
+                                                  <button id="btn-cerrar-en-modal" (click)="nextdayotmodaljornadaicono(ot)">
+                                                       <i class="far fa-arrow-alt-circle-right fa-3x"></i>
+                                                  </button>
+
+                                             </div>
+                                        </div>
+
+
+                                   </li>
+                              </ul>
+                         </div>
+                         <div class="col-6" *ngIf="!ocultarbotonpantallacerrarjornada; else templatesoloInfo">
+                              
+                             
+                              <label>{{descripcionmodalcerrarjornadadescripcion}}</label>
+                              <div class="text-center mt-2" *ngIf="buttoncerrarotenmodalcerrarjornada; else templateButtonCerrarjornada">
+                                   <button id="btn-acciones" class="btn btn-info" (click)="cerrarOtdesdemodalcerrarjornada()">{{titulomodalcerrarjornadadescripcion}}</button>
+                              </div>
+                              <ng-template #templateButtonCerrarjornada>
+                                   <div class="text-center mt-2">
+                                        <button id="btn-acciones" class="btn btn-danger" (click)="cerrarjornadadesdemodaljornada()">{{titulomodalcerrarjornadadescripcion}}</button>
+                                   </div>
+                              </ng-template>
+                         </div>
+                         <ng-template #templatesoloInfo>
+                              <div class="col-6">
+                                   <label>{{descripcionmodalcerrarjornadadescripcion}}</label>
+                              </div>
+                              
+                         </ng-template>
+                    </div>
+
+
+
+
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reiniciarmodalcerrarjornada()">Continuar jornada</button>
+                    <!-- <button type="button" class="btn btn-primary" (click)="VerificarOtsActivasAntesDeCerrarJornada()"
+               onclick="cerrarModalCerrarOt()">{{mensajebuttonmodalcerrarjornada}}</button> -->
+               </div>
+          </div>
+     </div>
+
+
+<ng-template #modalcerrarjornada>
+     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Cerrar jornada laboral</h5>
+
+               </div>
+               <div class="modal-body">
+                    <label for="message-text" class="col-form-label">{{descripcionmodalcerrarjornadadescripcion}}</label>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar jornada</button>
+                    <button type="button" class="btn btn-primary" (click)="cerrarJornadaLaboralPorElDia()" data-dismiss="modal" onclick="cerrarJornadaLaboralPorElDiaJs()">Cerrar jornada</button>
+               </div>
+          </div>
+     </div>
+</ng-template>
+
+
+</div>
+<!-- Modal Cerrar Jornada -->
+

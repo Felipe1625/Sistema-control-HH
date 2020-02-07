@@ -1,0 +1,58 @@
+table {
+     width: 100%;
+   }
+
+   #btn-acciones {
+    border-radius: 25px;
+}
+
+#btn-add{
+  border-radius: 25px;
+  font-weight:900;
+  background-color: #229954;
+}
+
+.mat-datepicker-input {
+  width: 85%;
+}
+
+mat-icon {
+  position: relative;
+  float: right;
+  top: -3px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+.btn-circle-lg {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 1.1rem;
+}
+
+#btn-filter{
+padding: 0;
+border: none;
+background: none;
+outline: none;
+color: #616161;
+}
+
+th{
+  background-color: #1DA4B7;
+  color: white;
+  text-align: center !important;
+}
+td{
+  text-align: center;
+}
