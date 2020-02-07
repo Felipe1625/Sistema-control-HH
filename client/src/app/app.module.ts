@@ -40,7 +40,8 @@ import { PausaListComponent } from './components/pausa/pausa-list/pausa-list.com
 
 //import {MatIconModule} from '@angular/material/icon';
 
-import {AuthGuard} from './auth.guard'
+import {AuthGuard} from './auth.guard';
+import { FooterComponent } from './components/footer/footer/footer.component'
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {AuthGuard} from './auth.guard'
     OtListComponent,
     OtFormComponent,
     OperadorPantallaComponent,
-    PausaListComponent
+    PausaListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
