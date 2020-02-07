@@ -1,1 +1,1 @@
-# Sistema-control-HH
+# Sistema de control de horas/hombre
