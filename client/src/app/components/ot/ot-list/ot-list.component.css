@@ -2,9 +2,9 @@ table {
      width: 100%;
 }
 
-#btn-acciones {
-    border-radius: 25px;
-}
+/* #btn-acciones {
+    border-radius: 25px; 
+} */
 
 #input{
     border-radius:25px;
@@ -16,3 +16,13 @@ table {
     background: none;
     outline: none;
     }
+
+    th{
+        background-color: #1DA4B7;
+        color: white;
+        text-align: center !important;
+    }
+    
+    td{
+        text-align: center;
+      }

@@ -23,7 +23,7 @@ class TrabajoController{
  
      //metodo create -> insert trabajo
      public async create(req:Request,res:Response):Promise<void>{ 
-          const sql=await pool.query('INSERT INTO trabajo set IdOt='+req.body.IdOt+',IdOperador='+req.body.IdOperador+',Fecha=\''+req.body.Fecha+'\',HoraInicio=\''+req.body.HoraInicio+'\',HoraFin=\''+req.body.HoraFin+'\',TotalTiempo=TIMEDIFF(\''+req.body.HoraFin+'\',\''+req.body.HoraInicio+'\')')
+          const sql=await pool.query('INSERT INTO trabajo set IdOt='+req.body.IdOt+',IdOperador='+req.body.IdOperador+',Fecha=\''+req.body.Fecha+'\',FechaFin=\''+req.body.FechaTermino+'\',HoraInicio=\''+req.body.HoraInicio+'\',HoraFin=\''+req.body.HoraFin+'\',TotalTiempo=TIMEDIFF(\''+req.body.HoraFin+'\',\''+req.body.HoraInicio+'\')')
           // console.log(req.body); 
           res.json(sql.insertId);
           

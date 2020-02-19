@@ -5,7 +5,7 @@
      </div>
      <div class="col">
           <button id="btn-add" class="btn btn-success float-right"
-               (click)="exporter.exportTable('xlsx', {sheet: 'Listado', Props: {Author: 'Talha'},fileName:'titulo'})"><i
+               (click)="exporter.exportTable('xlsx', {sheet: 'Listado', Props: {Author: 'Talha'},fileName:'Trabajos'})"><i
                     class="far fa-file-excel"></i> Exportar a excel</button>
      </div>
 </div>
@@ -34,7 +34,7 @@
 <div>
      <div class="mat-elevation-z3">
      <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z0 table-striped" #exporter="matTableExporter"
-          hiddenColumns="[0]" style=" text-align: center;">
+          hiddenColumns="[7]" style=" text-align: center;">
           <!--este hiddenColumns representa la columna que no sera exportada en el excel-->
 
           <!-- <ng-container matColumnDef="Accion">

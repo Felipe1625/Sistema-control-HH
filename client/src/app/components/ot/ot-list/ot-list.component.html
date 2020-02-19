@@ -4,14 +4,14 @@
      </div>
    </div>
    <div class="row">
-    <mat-form-field class="pr-3">
+    <mat-form-field class="pr-3 col-3"> 
       <input matInput class="form-field col-1" [formControl]="filtroCodigo" placeholder="Buscar Codigo">
     </mat-form-field>
     <button type="button" id="btn-filter"><i class=" ml-3 far fa-times-circle fa-2x" (click)="LimpiarFiltros()"></i></button>
    </div>
    
-   <div>
-     <table mat-table [dataSource]="dataSource"  class="mat-elevation-z0">
+   <div class="mat-elevation-z3">
+     <table mat-table [dataSource]="dataSource"  class="mat-elevation-z0 table-striped">
    
       
        <ng-container matColumnDef="Codigo">
@@ -23,7 +23,7 @@
          <th mat-header-cell *matHeaderCellDef> Acciones </th>
          <td mat-cell *matCellDef="let ot">
            
-           <button id="btn-acciones" type="button" class="btn btn-outline-danger m-2" data-toggle="modal"
+           <button type="button" class="btn btn-outline-danger m-2" data-toggle="modal"
              data-target="#modalEliminar" (click)="getid(ot.IdOt)"><i class="far fa-times-circle"></i>
              Eliminar</button>
          </td>

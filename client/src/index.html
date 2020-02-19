@@ -83,10 +83,11 @@
       // $('button:contains("' + nombre + '")').css({ "background-color": "#f44336" });
       // $('button:contains("' + nombre + '")').removeAttr('data-toggle')
       //hasta aqui volver 
-      $("div div li").removeClass("active");
+      $("div div li").removeClass("active"); 
       $("div div li").attr('data-toggle', 'modal')
       var nombre = document.getElementById('divNombreOperador').textContent;
-      $('li:contains("' + nombre + '")').addClass('active')
+      $('div li:contains("' + nombre + '")').addClass('active')
+      $("ul li").removeClass("active");
     }
 
     function pintarBordeNav(obj) {

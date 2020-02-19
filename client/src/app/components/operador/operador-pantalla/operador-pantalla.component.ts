@@ -981,6 +981,7 @@ export class OperadorPantallaComponent implements OnInit {
               this.otretornada = res;
               console.log('id de la ot retornada: ' + this.otretornada.IdOt)
               this.listOtIngresadas[index].IdOt = this.otretornada.IdOt
+              this.listOtIngresadas[index].FechaTermino=this.getFecha()
               delete this.listOtIngresadas[index].Codigo
               console.log(this.listOtIngresadas[index])
 

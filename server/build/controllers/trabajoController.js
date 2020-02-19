@@ -35,7 +35,7 @@ class TrabajoController {
     //metodo create -> insert trabajo
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = yield database_1.default.query('INSERT INTO trabajo set IdOt=' + req.body.IdOt + ',IdOperador=' + req.body.IdOperador + ',Fecha=\'' + req.body.Fecha + '\',HoraInicio=\'' + req.body.HoraInicio + '\',HoraFin=\'' + req.body.HoraFin + '\',TotalTiempo=TIMEDIFF(\'' + req.body.HoraFin + '\',\'' + req.body.HoraInicio + '\')');
+            const sql = yield database_1.default.query('INSERT INTO trabajo set IdOt=' + req.body.IdOt + ',IdOperador=' + req.body.IdOperador + ',Fecha=\'' + req.body.Fecha + '\',FechaFin=\'' + req.body.FechaTermino + '\',HoraInicio=\'' + req.body.HoraInicio + '\',HoraFin=\'' + req.body.HoraFin + '\',TotalTiempo=TIMEDIFF(\'' + req.body.HoraFin + '\',\'' + req.body.HoraInicio + '\')');
             // console.log(req.body); 
             res.json(sql.insertId);
         });
