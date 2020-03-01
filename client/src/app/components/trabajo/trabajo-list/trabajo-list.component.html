@@ -56,15 +56,11 @@
 
 
           <ng-container matColumnDef="Fecha">
-               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Fecha inicio </th>
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Fecha</th>
                <td mat-cell *matCellDef="let trabajo">{{trabajo.Fecha}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="FechaFin">
-               <th mat-header-cell *matHeaderCellDef style=" text-align: center;"> Fecha fin</th>
-               <td mat-cell *matCellDef="let trabajo">{{trabajo.FechaFin}}</td>
-          </ng-container>
-
+          
           <ng-container matColumnDef="HoraInicio">
                <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Hora Inicio </th>
                <td mat-cell *matCellDef="let trabajo">{{trabajo.HoraInicio}} </td>
@@ -89,15 +85,11 @@
           </ng-container>
 
           <ng-container matColumnDef="Accion">
-               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Acciones</th>
+               <th mat-header-cell *matHeaderCellDef style=" text-align: center;">Accion</th>
                <td mat-cell *matCellDef="let trabajo"><button type="button"
                          class="btn btn-info m-2" data-toggle="modal" data-target="#modalActualizar"
                          (click)="getData(trabajo)"><i class="fas fa-pencil-alt"></i></button>
-                         <button type="button"
-                         class="btn btn-success m-2" data-toggle="modal" data-target="#modalDetalle"
-                         (click)="detalleSegunTrabajo(trabajo)"><i class="fas fa-search"></i></button>
                     </td>
-                         
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="Columnas"></tr>

@@ -42,4 +42,7 @@ export class OtService {
     getOtByCodigo(Codigo:string){ //traer ot segun IdOt
       return this.http.get(`${this.API_URI}/ot/getOtByCodigo/${Codigo}`)
     }
+
+    
+
 }

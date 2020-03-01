@@ -7,7 +7,7 @@ class OtController{
      //list -> list all ot
 
      public async list(req:Request,res:Response){
-          const ots=await pool.query('SELECT * FROM ot WHERE Habilitado=1 and Activa=1'); 
+          const ots=await pool.query('SELECT IdOt,Codigo,HorasPresupuestadas,HorasTrabajadas,SUBSTRING_INDEX(timediff(HorasPresupuestadas,HorasTrabajadas),\'\.\',1) as Balance FROM ot WHERE Activa=1'); 
           res.json(ots);
      }
 
@@ -51,8 +51,12 @@ class OtController{
           console.log('metodo searchcode de ot controller, codigo: '+[req.params.id])
           const ot=await pool.query('SELECT * FROM ot WHERE codigo=?',[req.params.id]); 
           if(ot.length > 0){
+               console.log('la ot existe: ')
+               console.log(ot.IdOt)
                return res.json('existe'); 
           }else{
+               console.log('la ot no existe: ')
+               console.log(ot)
                return res.json('no existe');
           }
           

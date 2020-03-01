@@ -16,7 +16,7 @@ import { Tiempo } from '../../../models/Tiempo'
 })
 
 export class TrabajoListComponent implements OnInit {
-  Columnas: string[] = ['CodigoOt', 'Operador', 'Fecha', 'FechaFin', 'HoraInicio', 'HoraFin', 'Tiempo','Accion'];
+  Columnas: string[] = ['CodigoOt', 'Operador', 'Fecha', 'HoraInicio', 'HoraFin', 'Tiempo','Accion'];
   // Columnas: string[] = ['Accion', 'CodigoOt', 'Operador', 'Fecha', 'FechaFin', 'HoraInicio', 'HoraFin', 'Jornadas', 'Tiempo'];
   trabajos: any;
   tiempos: any;
@@ -56,8 +56,9 @@ export class TrabajoListComponent implements OnInit {
       this.filteredValues['Fecha'] = FechaFilterValue;
       this.dataSource.filter = JSON.stringify(this.filteredValues);
     });
+    console.log('buscar trabajos')
     this.getTrabajos();
-    this.getTiempo();
+    // this.getTiempo();
   }
 
 
@@ -97,6 +98,7 @@ export class TrabajoListComponent implements OnInit {
 
 
   getTrabajos() {
+    console.log('entro a buscar trabajos')
     this.trabajoService.getTrabajos().subscribe(
       res => {
         this.trabajos = res;
@@ -106,24 +108,25 @@ export class TrabajoListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       err => { console.error(err) }, () => {//
+        
         this.dataSource.filterPredicate = this.customFilterPredicate();
       }
     )
   }
 
-  getTiempo() {
-    this.tiempoService.getTiempos().subscribe(
-      res => {
-        this.tiempos = res;
-        console.log('getTiempos');
-        console.log(res)
+  // getTiempo() {
+  //   this.tiempoService.getTiempos().subscribe(
+  //     res => {
+  //       this.tiempos = res;
+  //       console.log('getTiempos');
+  //       console.log(res)
 
-      },
-      err => { console.error(err) }, () => {//
+  //     },
+  //     err => { console.error(err) }, () => {//
 
-      }
-    )
-  }
+  //     }
+  //   )
+  // }
 
 
   getData(trabajo: Trabajo) {
@@ -133,31 +136,33 @@ export class TrabajoListComponent implements OnInit {
   }
 
   //asigna en el array los datos del detalle del trabajo, si no encuentra tiempos, es porque se termino en el dia, asi que se tienen que mostrar los datos del mismo dia, si encuentra datos quiere decir que tiene tiempos, asi que se tiene que llenar el list de tiempos con los tiempos parac mostrar al adminisatrdor en una tabla en un modal
-  detalleSegunTrabajo(trabajo: Trabajo) {
-console.log('la lista tiene'+this.listTiempo)
-this.listTiempo=[]
-console.log('la lista despues de tiene= '+this.listTiempo)
-    console.log(trabajo)
-    console.log(trabajo.IdTrabajo)
-  console.log(this.tiempos)
-    for (let index = 0; index < this.tiempos.length; index++) {
-      console.log(this.tiempos[index].IdTrabajo)
-      if (this.tiempos[index].IdTrabajo == trabajo.IdTrabajo) {
-        console.warn('este trabajo tiene un tiempo asociado!')
-        this.listTiempo.push(this.tiempos[index])
+
+  
+//   detalleSegunTrabajo(trabajo: Trabajo) {
+// console.log('la lista tiene'+this.listTiempo)
+// this.listTiempo=[]
+// console.log('la lista despues de tiene= '+this.listTiempo)
+//     console.log(trabajo)
+//     console.log(trabajo.IdTrabajo)
+//   console.log(this.tiempos)
+//     for (let index = 0; index < this.tiempos.length; index++) {
+//       console.log(this.tiempos[index].IdTrabajo)
+//       if (this.tiempos[index].IdTrabajo == trabajo.IdTrabajo) {
+//         console.warn('este trabajo tiene un tiempo asociado!')
+//         this.listTiempo.push(this.tiempos[index])
         
-        console.log(this.tiempos[index])
-      }
-    }
-    // if(this.listTiempo.length==0){
-    //   let objTiempo=new Tiempo()
-    //   objTiempo.Fecha=trabajo.Fecha
-    //   objTiempo.HoraInicio=trabajo.HoraInicio
-    //   objTiempo.HoraFin=trabajo.HoraFin
-    //   objTiempo.TotalTiempo=trabajo.TotalTiempo
-    //   this.listTiempo.push(objTiempo)
-    // }
-  }
+//         console.log(this.tiempos[index])
+//       }
+//     }
+//     // if(this.listTiempo.length==0){
+//     //   let objTiempo=new Tiempo()
+//     //   objTiempo.Fecha=trabajo.Fecha
+//     //   objTiempo.HoraInicio=trabajo.HoraInicio
+//     //   objTiempo.HoraFin=trabajo.HoraFin
+//     //   objTiempo.TotalTiempo=trabajo.TotalTiempo
+//     //   this.listTiempo.push(objTiempo)
+//     // }
+//   }
 
 
   updateTrabajo() {
