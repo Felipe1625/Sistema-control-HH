@@ -15,7 +15,7 @@ export class OtService {
     return this.http.get(`${this.API_URI}/ot`);
   }
 
-  getOt(IdOt:string){ //traer ot segun IdOt
+  getOt(IdOt:string|number){ //traer ot segun IdOt
     return this.http.get(`${this.API_URI}/ot/${IdOt}`)
   }
 
@@ -24,6 +24,14 @@ export class OtService {
     
     return this.http.post(`${this.API_URI}/ot`,ot)
     }
+
+
+    saveOtandReturnId(ot:Ot){ //guardar ot, asi que le pasamos el ot, el cual esta estructurado en una class en models/Ot.ts
+      console.log('saveOtandReturnId')
+      
+      return this.http.post(`${this.API_URI}/ot/createot`,ot)
+      }
+
   
   //indicamos que el id puede ser de tipo string o de tipo number
     updateOt(IdOt:string|number,updatedOt:Ot): Observable<Ot>{

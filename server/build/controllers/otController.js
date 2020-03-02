@@ -17,7 +17,8 @@ class OtController {
     //list -> list all ot
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const ots = yield database_1.default.query('SELECT IdOt,Codigo,HorasPresupuestadas,HorasTrabajadas,SUBSTRING_INDEX(timediff(HorasPresupuestadas,HorasTrabajadas),\'\.\',1) as Balance FROM ot WHERE Activa=1');
+            // const ots=await pool.query('SELECT IdOt,Codigo,HorasPresupuestadas,HorasTrabajadas,SUBSTRING_INDEX(timediff(HorasPresupuestadas,HorasTrabajadas),\'\.\',1) as Balance FROM ot WHERE Activa=1'); 
+            const ots = yield database_1.default.query('SELECT o.IdOt as IdOt,o.Codigo as Codigo,o.HorasPresupuestadas as HorasPresupuestadas,SUBSTRING_INDEX(SEC_TO_TIME(SUM(TIME_TO_SEC(t.TotalTiempo))),\'\.\', 1) AS HorasTrabajadas,SUBSTRING_INDEX(timediff(HorasPresupuestadas,SUBSTRING_INDEX(SEC_TO_TIME(SUM(TIME_TO_SEC(t.TotalTiempo))), \'\.\', 1)),\'\.\',1) as Balance from ot o INNER join trabajo t on o.IdOt=t.IdOt GROUP by t.IdOt');
             res.json(ots);
         });
     }
@@ -36,6 +37,22 @@ class OtController {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO ot set ?', [req.body]);
             res.json({ message: 'ot saved' });
+        });
+    }
+    //metodo create -> insert ot
+    creatAndReturnId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('-------');
+            console.log('-------');
+            console.log('-------');
+            console.log('-------');
+            console.log(req.body);
+            console.log('-------');
+            console.log('-------');
+            console.log('-------');
+            console.log('-------');
+            const sql = yield database_1.default.query('INSERT INTO ot set ?', [req.body]);
+            res.json(sql.insertId);
         });
     }
     //metodo update -> update a ot
@@ -82,6 +99,22 @@ class OtController {
                 return res.json(ot[0]);
             }
             res.status(404).json({ text: 'ot not founding' });
+        });
+    }
+    verificarExisteOt(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('metodo verificarExisteOt de ot controller, codigo: ' + [req.params.id]);
+            const ot = yield database_1.default.query('SELECT * FROM ot WHERE codigo=?', [req.params.id]);
+            if (ot.length > 0) {
+                console.log('la ot existe: ');
+                console.log(ot[0].IdOt);
+                return res.json(ot[0].IdOt);
+            }
+            else {
+                console.log('la ot no existe: ');
+                console.log(ot);
+                return res.json('no existe');
+            }
         });
     }
 }

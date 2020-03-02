@@ -39,10 +39,17 @@ export class TrabajoService {
 
 
 
-  verificarCodigoOt(Codigo: string) {
+  verificarCodigoOt(Codigo: string|number) {
     console.log('metodo verificarCodigoOt de trabajoservice')
     console.log('codigo ot es: ' + Codigo);
     return this.http.get(`${this.API_URI}/ot/searchcode/${Codigo}`)
+
+  }
+
+  verificarExisteOt(Codigo: string|number) {
+    console.log('metodo verificarCodigoOt de trabajoservice')
+    console.log('codigo ot es: ' + Codigo);
+    return this.http.get(`${this.API_URI}/ot/verificarOt/${Codigo}`)
 
   }
 
@@ -52,6 +59,11 @@ export class TrabajoService {
     console.log('idTrabajo en service= '+IdTrabajo)
     return this.http.put(`${this.API_URI}/trabajo/${IdTrabajo}`,TotalTiempo)
     
+  }
+
+  updateCodigoTrabajo(IdTrabajo: string | number, updatedTrabajo: Trabajo): Observable<Ot> {
+    console.log('id trabajo es: ' + IdTrabajo);
+    return this.http.put(`${this.API_URI}/trabajo/update/${IdTrabajo}`, updatedTrabajo)
   }
 
 }

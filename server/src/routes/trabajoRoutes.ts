@@ -15,6 +15,7 @@ class TrabajoRoutes{
           // this.router.put('/:id',trabajoController.update);//http://localhost:3000/api/trabajo/10
           
           this.router.put('/:id',trabajoController.updateTotalTiempoTrabajo);
+          this.router.put('/update/:id',trabajoController.updateCodigoTrabajo);
      }
 
 }

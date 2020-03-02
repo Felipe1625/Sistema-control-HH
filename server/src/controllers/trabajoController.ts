@@ -4,7 +4,7 @@ import pool from '../database';
 
 class TrabajoController{ 
 
-     //list -> list all trabajos
+     //list -> list all trabajos 
 
      public async list(req:Request,res:Response){
           const trabajos=await pool.query('SELECT IdTrabajo,o.IdOt as IdOt,o.Codigo as Codigo,CONCAT(op.Nombre,\' \',op.Apellido) as Nombre,Fecha,HoraInicio,HoraFin,TotalTiempo FROM trabajo t inner join ot o on o.IdOt=t.IdOt inner join operador op on op.IdOperador=t.IdOperador WHERE o.ACTIVA=1');
@@ -39,6 +39,16 @@ class TrabajoController{
      }
 
      public async updateTotalTiempoTrabajo(req:Request,res:Response):Promise<void>{
+          console.log('req body: '+req.body);
+          console.log('req id: '+req.params.id);
+         console.log('UPDATE trabajo set ? WHERE IdTrabajo=?',[req.body,req.params.id])
+          await pool.query('UPDATE trabajo set ? WHERE IdTrabajo=?',[req.body,req.params.id]);
+          //await pool.query('UPDATE ot set ? WHERE IdOt=?',[req.body,req.params.id]);
+          res.json({message:'trabajo updating'});
+     }
+
+     
+     public async updateCodigoTrabajo(req:Request,res:Response):Promise<void>{
           console.log('req body: '+req.body);
           console.log('req id: '+req.params.id);
          console.log('UPDATE trabajo set ? WHERE IdTrabajo=?',[req.body,req.params.id])

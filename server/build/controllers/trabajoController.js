@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
 class TrabajoController {
-    //list -> list all trabajos
+    //list -> list all trabajos 
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const trabajos = yield database_1.default.query('SELECT IdTrabajo,o.IdOt as IdOt,o.Codigo as Codigo,CONCAT(op.Nombre,\' \',op.Apellido) as Nombre,Fecha,HoraInicio,HoraFin,TotalTiempo FROM trabajo t inner join ot o on o.IdOt=t.IdOt inner join operador op on op.IdOperador=t.IdOperador WHERE o.ACTIVA=1');
@@ -50,6 +50,16 @@ class TrabajoController {
         });
     }
     updateTotalTiempoTrabajo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('req body: ' + req.body);
+            console.log('req id: ' + req.params.id);
+            console.log('UPDATE trabajo set ? WHERE IdTrabajo=?', [req.body, req.params.id]);
+            yield database_1.default.query('UPDATE trabajo set ? WHERE IdTrabajo=?', [req.body, req.params.id]);
+            //await pool.query('UPDATE ot set ? WHERE IdOt=?',[req.body,req.params.id]);
+            res.json({ message: 'trabajo updating' });
+        });
+    }
+    updateCodigoTrabajo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('req body: ' + req.body);
             console.log('req id: ' + req.params.id);

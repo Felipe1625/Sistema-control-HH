@@ -141,6 +141,7 @@ export class OtListComponent implements OnInit {
     this.otService.updateOt(this.id,this.ot).subscribe(
       res => {
         console.log(res)
+        this.getOts()
       },
       err => { console.error(err) }, () => {//
       }

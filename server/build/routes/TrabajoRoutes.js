@@ -16,6 +16,7 @@ class TrabajoRoutes {
         this.router.post('/', trabajoController_1.default.create); //http://localhost:3000/api/trabajo/
         // this.router.put('/:id',trabajoController.update);//http://localhost:3000/api/trabajo/10
         this.router.put('/:id', trabajoController_1.default.updateTotalTiempoTrabajo);
+        this.router.put('/update/:id', trabajoController_1.default.updateCodigoTrabajo);
     }
 }
 const trabajoRoutes = new TrabajoRoutes();

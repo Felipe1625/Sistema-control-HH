@@ -22,8 +22,8 @@
        <ng-container matColumnDef="HorasPresupuestadas">
          <th mat-header-cell *matHeaderCellDef> Horas presupuestadas </th>
          <td mat-cell *matCellDef="let ot"> 
-          <div *ngIf="ot.HorasPresupuestadas!='00:00:00'; else btnAgregarhp">{{ot.HorasPresupuestadas}}</div>
-      <ng-template #btnAgregarhp>
+          <div *ngIf="ot.HorasPresupuestadas!='00:00:00'; else hp_vacio">{{ot.HorasPresupuestadas}}</div>
+      <ng-template #hp_vacio>
        -
       </ng-template>
       
@@ -31,14 +31,25 @@
           </td>
        </ng-container>
 
-       <ng-container matColumnDef="HorasTrabajadas">
+       <ng-container matColumnDef="HorasTrabajadas"> 
          <th mat-header-cell *matHeaderCellDef>Horas trabajadas</th>
          <td mat-cell *matCellDef="let ot"> {{ot.HorasTrabajadas}} </td>
        </ng-container>
 
        <ng-container matColumnDef="Balance">
          <th mat-header-cell *matHeaderCellDef> Balance </th>
-         <td mat-cell *matCellDef="let ot"> {{ot.Balance}} </td>
+         
+
+
+         <td mat-cell *matCellDef="let ot"> 
+          <div *ngIf="ot.HorasPresupuestadas!='00:00:00'; else balance_vacio">{{ot.Balance}}</div>
+      <ng-template #balance_vacio>
+       -
+      </ng-template>
+      
+
+          </td>
+
        </ng-container>
    
 

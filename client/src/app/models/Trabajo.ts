@@ -5,7 +5,7 @@ export interface Trabajo{
      IdOperador?:number;
      Rut?:string;
      Fecha?:any;
-     HoraInicio:any;
+     HoraInicio?:any;
      HoraFin?:any;
      TotalTiempo?:any;
 }

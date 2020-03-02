@@ -17,6 +17,9 @@ class OtRoutes{
           this.router.put('/delete/:id',otController.delete);//http://localhost:3000/api/administrador/delete/10 
           this.router.get('/searchcode/:id',otController.searchcode);//http://localhost:3000/api/ot/searchcode/10 
           this.router.get('/getOtByCodigo/:id',otController.getOtByCodigo); //http://localhost:3000/api/ot/getOtByCodigo/10
+          this.router.get('/verificarOt/:id',otController.verificarExisteOt);//http://localhost:3000/api/ot/searchcode/10 
+          
+          this.router.post('/createot/',otController.creatAndReturnId);//http://localhost:3000/api/ot/
      }
 
 }
